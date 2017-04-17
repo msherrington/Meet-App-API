@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  location: MyString
+  date: 2017-04-17
+  description: MyText
+  max_tickets: 1
+  tickets_left: 1
+  price: 1
+  image: MyString
+  video: MyString
+  user: one
+
+two:
+  name: MyString
+  location: MyString
+  date: 2017-04-17
+  description: MyText
+  max_tickets: 1
+  tickets_left: 1
+  price: 1
+  image: MyString
+  video: MyString
+  user: two
