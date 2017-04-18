@@ -16,6 +16,7 @@ class EventsController < ApplicationController
   # POST /events
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
 
     if @event.save
       render json: @event, status: :created, location: @event

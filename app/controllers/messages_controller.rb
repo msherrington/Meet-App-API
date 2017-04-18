@@ -2,7 +2,8 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   before_action do
-    @conversation = Conversation.find(params[:conversation_id])
+    @conversation = Conversation.find({ id: message.conversation.id })
+    console.log(@conversation)
   end
 
   def index

@@ -1,4 +1,4 @@
-[User, Event, Ticket, Comment, Category].each do |model|
+[User, Event, Ticket, Comment, Category, Conversation, Message].each do |model|
   ActiveRecord::Base.connection.execute("TRUNCATE #{model.table_name} RESTART IDENTITY CASCADE")
 end
 
@@ -19,5 +19,8 @@ Ticket.create!(event: organised, user: jack)
 Comment.create!(event: grad, body: "I bring the partaay!", user: jack)
 
 conv = Conversation.create!(sender: jack, receiver: conor)
+conv2 = Conversation.create!(sender: jack, receiver: mark)
 
-mess = Message.create!(body: "wzesimo", user: jack, conversation: conv)
+mess = Message.create!(body: "Mark is baad at coding...keep it a secret though", user: jack, conversation: conv)
+mess1 = Message.create!(body: "Yes I agree. ", user: conor, conversation: conv)
+mess2 = Message.create!(body: "Conor is bad at coding..keep it a secret though", user: jack, conversation: conv2)
