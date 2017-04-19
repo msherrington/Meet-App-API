@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+
+
   scope :api do
     post 'register', to: 'authentications#register'
     post 'login', to: 'authentications#login'
+    post 'oauth/github', to: 'oauth#github'
+    post 'auth/facebook', to: 'oauth#facebook'
     resources :users
     resources :events
     resources :tickets
