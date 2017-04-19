@@ -15,7 +15,8 @@ class EventsController < ApplicationController
 
   # POST /events
   def create
-    @event = Event.new(event_params)
+    @event = Event.new(Uploader.upload(event_params))
+    # @event = Event.new(event_params)
     @event.user = current_user
 
     if @event.save
@@ -49,6 +50,6 @@ class EventsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:name, :location, :date, :description, :max_tickets, :tickets_left, :price, :image, :video, :user_id, attendee_ids:[], categories: [])
+      params.require(:event).permit(:name, :location, :date, :description, :max_tickets, :tickets_left, :price, :base64, :video, :user_id, attendee_ids:[], categories: [])
     end
 end

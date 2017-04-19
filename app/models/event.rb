@@ -4,4 +4,5 @@ class Event < ApplicationRecord
   has_many :comments
   has_many :categories
   has_and_belongs_to_many :attendees, class_name: "User", foreign_key: "user_id"
+  mount_uploader :image, ImageUploader
 end
