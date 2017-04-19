@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   scope :api do
     post 'register', to: 'authentications#register'
     post 'login', to: 'authentications#login'
@@ -8,8 +7,8 @@ Rails.application.routes.draw do
     resources :tickets
     resources :categories
     resources :comments
-    resources :conversations do
-    resources :messages
+    resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :create]
     end
   end
 end
