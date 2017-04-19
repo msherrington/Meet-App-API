@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :comments
     resources :conversations, only: [:index, :create] do
-      resources :messages, only: [:index, :create]
+    resources :messages, only: [:index, :create]
     end
   end
 end
