@@ -27,6 +27,7 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1
   def update
+    # return render json: { errors: ["Unauthorized"] } if @event.user != current_user
     if @event.update(event_params)
       render json: @event
     else
@@ -36,6 +37,7 @@ class EventsController < ApplicationController
 
   # DELETE /events/1
   def destroy
+    return render json: { errors: ["Unauthorized"] } if @event.user != current_user
     @event.destroy
   end
 

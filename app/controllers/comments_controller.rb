@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
     @comment = Comment.new(comment_params)
+    @comment.user = current_user
 
     if @comment.save
       render json: @comment, status: :created, location: @comment
@@ -26,6 +27,7 @@ class CommentsController < ApplicationController
 
   # PATCH/PUT /comments/1
   def update
+    return render json: { errors: ["Unauthorized"] } if @comment.user != current_user
     if @comment.update(comment_params)
       render json: @comment
     else
@@ -35,6 +37,7 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1
   def destroy
+    return render json: { errors: ["Unauthorized"] } if @comment.user != current_user
     @comment.destroy
   end
 
