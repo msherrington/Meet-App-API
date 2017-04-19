@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     resources :tickets
     resources :categories
     resources :comments
-    resources :conversations
-    resources :messages
+    resources :conversations, only: [:index, :create] do
+      resources :messages, only: [:index, :create]
+    end
   end
 end

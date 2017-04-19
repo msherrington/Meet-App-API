@@ -2,16 +2,14 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   before_action do
-    @conversation = Conversation.find({ id: message.conversation.id })
-    console.log(@conversation)
+    @conversation = Conversation.find(params[:conversation_id])
   end
 
   def index
     @messages = @conversation.messages
-
     @messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
-
-    @message = @conversation.messages.new
+    
+    render json: @messages
   end
 
   def create
@@ -19,12 +17,14 @@ class MessagesController < ApplicationController
     @message.user = current_user
 
     if @message.save
-      redirect_to conversation_messages_path(@conversation)
+      render json: @message
+    else
+      render json: @message.errors, status: :unprocessable_entity
     end
   end
 
   private
     def message_params
-      params.require(:message).permit(:body, :user_id)
+      params.require(:message).permit(:body, :user_id, :conversation_id)
     end
 end
