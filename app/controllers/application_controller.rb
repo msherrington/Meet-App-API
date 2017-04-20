@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   before_action :authenticate_user!
+  
 
   def authenticate_user!
     render json: { errors: ["Unauthorized"] }, status: 401 unless user_signed_in?
@@ -13,6 +14,10 @@ class ApplicationController < ActionController::API
     @current_user ||= User.find(decoded_token[:id]) if id_found?
   rescue
     nil
+  end
+
+  def unread_messages
+    @unread_messages ||= current_user.conversations.unread_message_count
   end
 
   private
