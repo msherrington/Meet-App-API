@@ -3,8 +3,9 @@ class EventSerializer < ActiveModel::Serializer
   has_many :comments
   has_many :tickets
   has_many :categories
-  has_many :attendees, class_name: "User", foreign_key: "user_id"
-  attributes :id, :name, :location, :date, :description, :max_tickets, :tickets_left, :price, :image_src, :video, :attendees
+  # has_many :attendees, class_name: "User", foreign_key: "user_id"
+  has_many :users
+  attributes :id, :name, :location, :date, :description, :max_tickets, :tickets_left, :price, :image_src, :video, :users
 
   def image_src
     object.image.url

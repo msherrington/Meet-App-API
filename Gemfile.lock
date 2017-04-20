@@ -97,11 +97,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
-<<<<<<< HEAD
-    multi_xml (0.6.0)
-=======
     multi_json (1.12.1)
->>>>>>> development
+    multi_xml (0.6.0)
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
@@ -165,10 +162,10 @@ DEPENDENCIES
   active_model_serializers
   bcrypt (~> 3.1.7)
   byebug
-  httparty
   carrierwave
   carrierwave-base64
   fog-aws
+  httparty
   jwt
   listen (~> 3.0.5)
   pg (~> 0.18)
