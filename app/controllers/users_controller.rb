@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users, include: ['events_created.comments', 'events_created.comments.user']
+    render json: @users
+    # render json: @users, include: ['events_created.comments', 'events_created.comments.user']
     # render json: @users, include: ['events_attending.comments', 'events_created.comments', 'events_attending.comments.user', 'events_created.comments.user']
   end
 
