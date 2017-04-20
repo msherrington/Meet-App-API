@@ -17,6 +17,7 @@ class ConversationsController < ApplicationController
     redirect_to conversation_messages_path(@conversation)
   end
 
+
   private
     def conversation_params
       params.permit(:sender_id, :receiver_id)
