@@ -9,4 +9,13 @@ class Conversation < ApplicationRecord
   scope :between, -> (sender_id, receiver_id) do
     where("(conversations.sender_id = ? AND conversations.receiver_id = ?) OR (conversations.receiver_id = ? AND conversations.sender_id = ?)", sender_id, receiver_id, sender_id, receiver_id)
   end
+
+  def recipient(user)
+    self.sender_id == user.id ? self.receiver : self.sender
+  end
+
+  def unread_message_count(user)
+    self.messages.where("user_id != :user_id AND read = :read",{ user_id: user.id, read: false}).count
+  end
+
 end
