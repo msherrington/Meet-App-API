@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :events_created, class_name: "Event", foreign_key: "user_id"
   has_many :events, through: :tickets
   has_many :tickets
-
+  mount_uploader :image, ImageUploader
   validates :username, presence: true, unless: :oauth_login?
   validates :email, uniqueness: true, presence: true, unless: :oauth_login?, on: :create
 

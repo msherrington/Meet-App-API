@@ -12,12 +12,13 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    p @user
     render json: @user
   end
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = User.new(Uploader.upload(user_params))
 
     if @user.save
       render json: @user, status: :created, location: @user
@@ -26,14 +27,37 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST /events
+  # def create
+  #   @event = Event.new(Uploader.upload(event_params))
+  #   # @event = Event.new(event_params)
+  #   @event.user = current_user
+  #
+  #   if @event.save
+  #     render json: @event, status: :created, location: @event
+  #   else
+  #     render json: @event.errors, status: :unprocessable_entity
+  #   end
+  # end
+
+
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
+    if @user.update(Uploader.upload(user_params))
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end
   end
+
+  # def update
+  #   # return render json: { errors: ["Unauthorized"] } if @event.user != current_user
+  #   if @event.update(Uploader.upload(event_params))
+  #     render json: @event
+  #   else
+  #     render json: @event.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # DELETE /users/1
   def destroy
@@ -48,6 +72,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:username, :email, :image, :bio, :password, :password_confirmation, events_attending_ids:[])
+      params.require(:user).permit(:username, :email, :base64, :bio, :password, :password_confirmation, events_attending_ids:[])
     end
 end

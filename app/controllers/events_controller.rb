@@ -29,7 +29,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   def update
     # return render json: { errors: ["Unauthorized"] } if @event.user != current_user
-    if @event.update(event_params)
+    if @event.update(Uploader.upload(event_params))
       render json: @event
     else
       render json: @event.errors, status: :unprocessable_entity
@@ -50,6 +50,6 @@ class EventsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:name, :location, :date, :description, :max_tickets, :tickets_left, :price, :base64, :video, :user_id, attendee_ids:[], categories: [])
+      params.require(:event).permit(:name, :location, :date, :description, :max_tickets, :tickets_left, :price, :base64, :video, :user_id, :latitude, :longitude, attendee_ids:[], categories: [])
     end
 end
