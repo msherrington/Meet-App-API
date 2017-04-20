@@ -6,8 +6,8 @@ mark = User.create!(username: "Mark", email: "look@me.com", image: "https://medi
 conor = User.create!(username: "Conor", email: "heen@slice", image: "", bio: "Irish Code Monkey", password: "password", password_confirmation: "password")
 jack = User.create!(username: "Giacomo", email: "jack@mo", image: "", bio: "Italian Code Monkey", password: "password", password_confirmation: "password")
 
-grad = Event.create!(name: "WDI25 Grad Ball", location: "Black Horse Pub", date: Date.new(2017, 4, 25), description: "Massive knees up", max_tickets: 8, tickets_left: 3, price: 0.00, image: "", video: "", user: conor,  )
-organised = Event.create(name: "Piss-up", location: "A Brewery", date: Date.new(2017, 4, 28), description: "Piss-up in a brewery", max_tickets: 8, tickets_left: 7, price: 5.20, image: "", video: "", user: mark)
+grad = Event.create!(name: "WDI25 Grad Ball", location: "Black Horse Pub", latitude: 51.5153, longitude: 0.0726, date: Date.new(2017, 4, 25), description: "Massive knees up", max_tickets: 8, tickets_left: 3, price: 0.00, image: "", video: "", user: conor,  )
+organised = Event.create(name: "Piss-up", location: "A Brewery", latitude: 51.5151, longitude: 0.0722, date: Date.new(2017, 4, 28), description: "Piss-up in a brewery", max_tickets: 8, tickets_left: 7, price: 5.20, image: "", video: "", user: mark)
 
 Ticket.create!(event: grad, user: mark)
 Ticket.create!(event: grad, user: conor)
