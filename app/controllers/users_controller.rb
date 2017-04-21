@@ -6,8 +6,6 @@ class UsersController < ApplicationController
     @users = User.all
 
     render json: @users
-    # render json: @users, include: ['events_created.comments', 'events_created.comments.user']
-    # render json: @users, include: ['events_attending.comments', 'events_created.comments', 'events_attending.comments.user', 'events_created.comments.user']
   end
 
   # GET /users/1
@@ -27,20 +25,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # POST /events
-  # def create
-  #   @event = Event.new(Uploader.upload(event_params))
-  #   # @event = Event.new(event_params)
-  #   @event.user = current_user
-  #
-  #   if @event.save
-  #     render json: @event, status: :created, location: @event
-  #   else
-  #     render json: @event.errors, status: :unprocessable_entity
-  #   end
-  # end
-
-
   # PATCH/PUT /users/1
   def update
     if @user.update(Uploader.upload(user_params))
@@ -49,15 +33,6 @@ class UsersController < ApplicationController
       render json: @user.errors, status: :unprocessable_entity
     end
   end
-
-  # def update
-  #   # return render json: { errors: ["Unauthorized"] } if @event.user != current_user
-  #   if @event.update(Uploader.upload(event_params))
-  #     render json: @event
-  #   else
-  #     render json: @event.errors, status: :unprocessable_entity
-  #   end
-  # end
 
   # DELETE /users/1
   def destroy
