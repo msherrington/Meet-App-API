@@ -20,6 +20,7 @@ class TicketsController < ApplicationController
 
     if @ticket.save
       render json: @ticket, status: :created, location: @ticket
+      UserMailer.ticket_email(@ticket.user).deliver
     else
       render json: @ticket.errors, status: :unprocessable_entity
     end
