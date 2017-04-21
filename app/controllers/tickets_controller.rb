@@ -17,10 +17,11 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(ticket_params)
     @ticket.user = current_user
+    @event = @ticket.event.name
 
     if @ticket.save
       render json: @ticket, status: :created, location: @ticket
-      UserMailer.ticket_email(@ticket.user).deliver
+      UserMailer.ticket_email(@ticket.user, @ticket, @event).deliver
     else
       render json: @ticket.errors, status: :unprocessable_entity
     end
