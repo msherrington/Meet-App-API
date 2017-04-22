@@ -11,6 +11,7 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def tickets_left
-    object.max_tickets - object.users.size
+    return 0 unless object.max_tickets
+    object.max_tickets - object.tickets.size
   end
 end
