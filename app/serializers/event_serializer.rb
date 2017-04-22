@@ -9,4 +9,8 @@ class EventSerializer < ActiveModel::Serializer
   def image_src
     object.image.url
   end
+
+  def tickets_left
+    object.max_tickets - object.users.size
+  end
 end
