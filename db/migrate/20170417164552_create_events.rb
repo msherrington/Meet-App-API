@@ -9,7 +9,6 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.integer :tickets_left
       t.integer :price
       t.string :image
-      t.string :video
       t.references :user, foreign_key: true
 
       t.timestamps
