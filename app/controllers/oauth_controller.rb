@@ -37,7 +37,7 @@ class OauthController < ApplicationController
     token = HTTParty.post('https://graph.facebook.com/v2.8/oauth/access_token', {
       query: {
         client_id: ENV["FACEBOOK_CLIENT_ID"],
-        redirect_uri: 'http://localhost:7000/',
+        redirect_uri: ENV['APP_URL'] + "/" || "http://localhost:7000/",
         client_secret: ENV["FACEBOOK_CLIENT_SECRET_RAILS"],
         code: params[:code]
       },
