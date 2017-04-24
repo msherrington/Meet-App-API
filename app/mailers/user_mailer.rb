@@ -1,11 +1,11 @@
 class UserMailer < ApplicationMailer
   default from: 'meet.app.mail@gmail.com'
 
-  @app_url = ENV["APP_URL"] || "http://localhost:7000"
+  APP_URL = ENV["APP_URL"] || "http://localhost:7000"
 
   def welcome_email(user)
     @user = user
-    @url  = "#{@app_url}/login"
+    @url  = "#{APP_URL}/login"
     mail(to: @user.email, subject: 'Welcome to MeetApp')
   end
 
@@ -15,7 +15,7 @@ class UserMailer < ApplicationMailer
     @ticket_id = ticket.id
     @event = event
     @id = user.id
-    @url  = "#{@app_url}/events"
+    @url  = "#{APP_URL}/events"
     mail(to: @user.email, subject: 'Your ticket!')
   end
 
