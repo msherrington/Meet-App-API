@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :events, through: :tickets
   has_many :tickets
   mount_uploader :image, ImageUploader
-  validates :username, presence: true, unless: :oauth_login?
+  validates :username, uniqueness: true, presence: true, unless: :oauth_login?
   validates :email, uniqueness: true, presence: true, unless: :oauth_login?, on: :create
 
   def oauth_login?
