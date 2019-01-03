@@ -1,6 +1,6 @@
-##GA WDI 25 London - Project 4
+## GA WDI 25 London - Project 4
 
-#MeetApp
+# MeetApp
 
 Please see the ReadMe file on the Frontend repo [here](https://github.com/msherrington/Meet-App/blob/master/README.md)
 
